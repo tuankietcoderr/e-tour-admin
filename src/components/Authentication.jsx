@@ -71,7 +71,7 @@ const Authentication = () => {
   };
 
   return (
-    <div className="absolute inset-0 flex justify-center items-center bg-slate-400/80 z-[999]">
+    <div className="fixed inset-0 flex justify-center items-center bg-slate-400/80 z-[999]">
       <div className="bg-white p-20 rounded-lg">
         <h2 className="text-xl text-center font-bold mb-8">Log in</h2>
         <FormControl
