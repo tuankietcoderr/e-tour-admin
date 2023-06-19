@@ -9,12 +9,10 @@ import { selectAdmin } from "@/store/features/auth/selector";
 import { AuthState } from "@/constants/state";
 import { setAuth } from "@/store/features/auth";
 import { getAllRegistrationsThunk } from "@/store/features/registration/thunk";
-import {
-  getApplicationReportsThunk,
-  getCompanyReportsThunk,
-  getRouteReportsThunk,
-} from "@/store/features/report/thunk";
 import useAuthenticationState from "@/auth/useAuthenticationState";
+import { getAllReportsThunk } from "@/store/features/report/thunk";
+import { getAllCompaniesThunk } from "@/store/features/company/thunk";
+import { getAllRoutesThunk } from "@/store/features/route/thunk";
 
 const BasePage = () => {
   const navigate = useNavigate();
@@ -32,10 +30,10 @@ const BasePage = () => {
   React.useEffect(() => {
     if (status === AuthState.AUTHORIZED) {
       Promise.all([
+        dispatch(getAllCompaniesThunk()),
+        dispatch(getAllRoutesThunk()),
         dispatch(getAllRegistrationsThunk()),
-        dispatch(getCompanyReportsThunk()),
-        dispatch(getApplicationReportsThunk()),
-        dispatch(getRouteReportsThunk()),
+        dispatch(getAllReportsThunk()),
       ]);
     }
   }, [status]);
@@ -61,8 +59,8 @@ const BasePage = () => {
               onClick={() => navigate("/")}
             />
           </GridItem>
-          <GridItem pl="2" area={"nav"} className="!p-0">
-            <div className="bg-sky-700 h-[calc(100vh-80px)] rounded-tr-md flex flex-col justify-between">
+          <GridItem pl="2" area={"nav"} className="!p-0 z-[999999]">
+            <div className="bg-sky-700 h-[calc(100vh-80px)] rounded-tr-md flex flex-col justify-between z-[999999]">
               <NavigationBar />
             </div>
           </GridItem>

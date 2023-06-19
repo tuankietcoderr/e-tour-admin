@@ -23,32 +23,25 @@ import {
 import React from "react";
 
 const Reports = ({ isLimitedRender = true }) => {
-  const { status: applicationReportStatus, data: applicationReports } =
-    useAppSelector(selectApplicationReports);
-
-  const { status: companyReportStatus, data: companyReports } =
-    useAppSelector(selectCompanyReports);
-  const { status: routeReportStatus, data: routeReports } =
-    useAppSelector(selectRouteReports);
+  const routeReports = useAppSelector(selectRouteReports);
+  const companyReports = useAppSelector(selectCompanyReports);
+  const applicationReports = useAppSelector(selectApplicationReports);
 
   const reports = [
     {
       _id: randomUUID(),
       name: "Route",
       data: routeReports,
-      status: routeReportStatus,
     },
     {
       _id: randomUUID(),
       name: "Company",
       data: companyReports,
-      status: companyReportStatus,
     },
     {
       _id: randomUUID(),
       name: "Application",
       data: applicationReports,
-      status: applicationReportStatus,
     },
   ];
 

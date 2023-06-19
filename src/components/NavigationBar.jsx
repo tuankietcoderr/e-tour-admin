@@ -1,6 +1,10 @@
 import { AuthState } from "@/constants/state";
 import { logout } from "@/store/features/auth";
 import { selectAdmin } from "@/store/features/auth/selector";
+import { clearCompanies } from "@/store/features/company";
+import { clearRegistrations } from "@/store/features/registration";
+import { clearReports } from "@/store/features/report";
+import { clearRoutes } from "@/store/features/route";
 import { useAppDispatch, useAppSelector } from "@/store/hook";
 import { SkeletonText } from "@chakra-ui/react";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -36,6 +40,10 @@ const NavigationBar = () => {
   const dispatch = useAppDispatch();
   const handleLogOut = () => {
     dispatch(logout());
+    dispatch(clearCompanies());
+    dispatch(clearRegistrations());
+    dispatch(clearReports());
+    dispatch(clearRoutes());
     navigate("/");
   };
 

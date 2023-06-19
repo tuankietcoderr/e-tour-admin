@@ -1,15 +1,11 @@
-import {
-  viewApplicantReport,
-  viewCompanyReport,
-  viewRouteReport,
-} from "@/api/report";
+import { deleteReport, viewAllReport } from "../../../api/report";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-const getApplicationReportsThunk = createAsyncThunk(
-  "report/getApplicationReports",
+const getAllReportsThunk = createAsyncThunk(
+  "report/getAllReports",
   async () => {
     try {
-      const res = await viewApplicantReport();
+      const res = await viewAllReport();
       return res.data;
     } catch (err) {
       throw err;
@@ -17,11 +13,11 @@ const getApplicationReportsThunk = createAsyncThunk(
   }
 );
 
-const getCompanyReportsThunk = createAsyncThunk(
-  "report/getCompanyReports",
-  async () => {
+const deleteReportThunk = createAsyncThunk(
+  "report/deleteReport",
+  async (id: string) => {
     try {
-      const res = await viewCompanyReport();
+      const res = await deleteReport(id);
       return res.data;
     } catch (err) {
       throw err;
@@ -29,20 +25,4 @@ const getCompanyReportsThunk = createAsyncThunk(
   }
 );
 
-const getRouteReportsThunk = createAsyncThunk(
-  "report/getRouteReports",
-  async () => {
-    try {
-      const res = await viewRouteReport();
-      return res.data;
-    } catch (err) {
-      throw err;
-    }
-  }
-);
-
-export {
-  getApplicationReportsThunk,
-  getCompanyReportsThunk,
-  getRouteReportsThunk,
-};
+export { getAllReportsThunk, deleteReportThunk };

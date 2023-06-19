@@ -1,17 +1,12 @@
 import RegistrationCard from "@/components/RegistrationCard";
 import Reports from "@/components/Reports";
-import { AuthState, State } from "@/constants/state";
+import { AuthState } from "@/constants/state";
 import { selectAdmin } from "@/store/features/auth/selector";
 import {
   selectPendingRegistrations,
   selectRegistrations,
   selectRejectedRegistrations,
 } from "@/store/features/registration/selector";
-import {
-  selectApplicationReports,
-  selectCompanyReports,
-  selectRouteReports,
-} from "@/store/features/report/selector";
 import { useAppSelector } from "@/store/hook";
 import { Heading, SkeletonText } from "@chakra-ui/react";
 
@@ -22,14 +17,6 @@ const HomePage = () => {
 
   const pendingRegistrations = useAppSelector(selectPendingRegistrations);
   const rejectedRegistrations = useAppSelector(selectRejectedRegistrations);
-
-  const { status: applicationReportStatus, data: applicationReports } =
-    useAppSelector(selectApplicationReports);
-
-  const { status: companyReportStatus, data: companyReports } =
-    useAppSelector(selectCompanyReports);
-  const { status: routeReportStatus, data: routeReports } =
-    useAppSelector(selectRouteReports);
 
   const isTitleLoaded = status === AuthState.AUTHORIZED;
 

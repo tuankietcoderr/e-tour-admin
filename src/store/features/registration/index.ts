@@ -15,7 +15,11 @@ const initialState: IRegistrationSlice = {
 export const registrationSlice = createSlice({
   name: "registration",
   initialState,
-  reducers: {},
+  reducers: {
+    clearRegistrations: (state) => {
+      state.registrations = undefined;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(getAllRegistrationsThunk.pending, (state) => {
@@ -43,3 +47,4 @@ export const registrationSlice = createSlice({
 });
 
 export default registrationSlice.reducer;
+export const { clearRegistrations } = registrationSlice.actions;
