@@ -30,6 +30,7 @@ import {
 import moment from "moment";
 import React from "react";
 import { Slide } from "react-slideshow-image";
+import ReadMoreReact from "read-more-react";
 
 const RegistrationCard = ({ registration }) => {
   const dispatch = useAppDispatch();
@@ -153,7 +154,11 @@ const RegistrationCard = ({ registration }) => {
         </CardHeader>
         <CardBody>
           <SkeletonText noOfLines={4} isLoaded={isLoaded}>
-            <Text>{registration?.description}</Text>
+            <ReadMoreReact
+              text={registration?.description || ""}
+              min={100}
+              readMoreText="...read more"
+            />
           </SkeletonText>
         </CardBody>
 
